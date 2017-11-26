@@ -79,6 +79,10 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     }
+    
+    public void analizaTekstu(ActionEvent event) {
+        
+    }
 
     // ========================PRZYCISKI SZYFROWANIE 
     @FXML

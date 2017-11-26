@@ -1,14 +1,12 @@
-package od;
-
 import java.util.*;
 
 
 public class SzyfrCezara {
 
 
-	public static final String ALFABET = "abcdefghijklmnopqrstuvwxyz"; //final wskazuje, że wartość zmiennej nie ulegnie zmianie, zmienna, kórej wartości nie można zmienić po zadeklarowaniu
+	public static final String ALFABET = "abcdefghijklmnopqrstuvwxyz"; //final wskazuje, że wartość zmiennej nie ulegnie zmianie, zmienna, kórej wartości nie można zmienić po zadeklarowaniu
 
-		public static String szyfruj(String tekstJawny, int klucz) //metoda statyczna pozwalająca na wspóużytkowanie dla wszystkich instancji klasy.
+		public static String szyfruj(String tekstJawny, int klucz) //metoda statyczna pozwalająca na współużytkowanie dla wszystkich instancji klasy.
 		{
 			tekstJawny = tekstJawny.toLowerCase();
 			String szyfrogram = "";
@@ -44,8 +42,12 @@ public class SzyfrCezara {
 		System.out.println("Wprowadź tekst: ");
 		String tekst = new String();
 		tekst = sc.next();
-		System.out.println(szyfruj(tekst, 3));
-		System.out.println(odszyfruj(szyfruj(tekst, 3), 3));
+		System.out.println("Podaj klucz z przedziału [-26..26]: ");
+		int klucz = sc.nextInt();
+		System.out.println("Tekst zaszyfrowany: ");
+		System.out.println(szyfruj(tekst, klucz));
+		System.out.println("Tekst odszyfrowany: " );
+		System.out.println(odszyfruj(szyfruj(tekst, klucz), klucz));
 		
 		}
 }

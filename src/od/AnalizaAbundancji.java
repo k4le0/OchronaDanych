@@ -11,7 +11,7 @@ import java.io.*;
  *
  * @author k4le0
  */
-public class analizaAbundancji {
+public class AnalizaAbundancji {
 
 public static void main(String[] args) throws IOException {
     BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
@@ -53,7 +53,7 @@ public static void main(String[] args) throws IOException {
     //Get the found characters as an array of Character
     Character[] charactersFound = map.keySet().toArray(new Character[0]);
 
-    System.out.println("Letters\tFrequency\tCount");
+    System.out.println("Litera\tCzestotliwosc\tLiczba");
     for(int k = 0; k < charactersFound.length; k++)
     {
         character = charactersFound[k];
@@ -66,4 +66,5 @@ public static void main(String[] args) throws IOException {
                 //get the count for the character
                 map.get(character));
     }
+}
 }

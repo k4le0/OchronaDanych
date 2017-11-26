@@ -1,0 +1,15 @@
+/dist/
+*~
+.classpath
+.project
+target
+.settings
+.DS_Store
+.faces-config.xml.jsfdia
+MANIFEST.MF
+manifest.mf
+.idea
+*.iml
+*.jar
+RemoteSystemsTempFiles
+bin

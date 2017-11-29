@@ -5,8 +5,10 @@
  */
 package od;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
@@ -20,9 +22,12 @@ import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 import javafx.application.Platform;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
+import java.util.*;
+import java.io.*;
 
 
 /**
@@ -33,8 +38,8 @@ public class FXMLDocumentController implements Initializable {
     
     private Stage stage;
     //public StringBuilder jawnyWczytanyTekst, zaszyfrowanyWczytanyTeskt;
-    public TextArea zaszyfrowanyWczytanyTesktArea,odszyfrowanyWczytanyTesktArea; 
-    public String zaszyfrowanyWczytanyTeskt,odszyfrowanyTekst;
+    public TextArea zaszyfrowanyWczytanyTesktArea,odszyfrowanyWczytanyTesktArea, analizaArea; 
+    public String zaszyfrowanyWczytanyTeskt,odszyfrowanyTekst, analizaTekst;
    
     
     
@@ -80,8 +85,8 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    public void analizaTekstu(ActionEvent event) {
-        
+    /**public void analizaTekstu(ActionEvent event) {
+    analizaArea.setText(analizaTekst); 
     }
 
     // ========================PRZYCISKI SZYFROWANIE 
@@ -89,7 +94,81 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label1_1.setText("Hello World!");
+    } */
+    
+    public static float round2(float number, int scale) {
+    int pow = 10;
+    for (int i = 1; i < scale; i++)
+        pow *= 10;
+    float tmp = number * pow;
+    return ( (float) ( (int) ((tmp - (int) tmp) >= 0.5f ? tmp + 1 : tmp) ) ) / pow;
+}
+    
+    public void analizaTekstu (ActionEvent event) {
+    //BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
+    //System.out.println("Enter Any Text: ");
+    //String output = BR.readLine();
+    String output = zaszyfrowanyWczytanyTeskt;
+    output=output.toLowerCase();
+    
+    int length = output.length();
+    char character;
+    int totalCount = 0;
+
+    //we'll store each encountered character in this map, along with a count of the number
+    //of times encountered.
+    Map<Character, Integer> map = new HashMap<Character,Integer>();
+
+    //Loop over the output once, character by character
+    for (int i = 0; i < length; i++)
+    {
+        character = output.charAt(i);
+        totalCount++; //This is the total number of characters we've found in the output
+
+        Integer countForCharacter = 0;
+        //check in map if we have a count for this character
+        if (map.containsKey(character)) {
+            //get the current count we have for this character
+            countForCharacter = map.get(character);
+            //increment
+            countForCharacter++;
+            //increment the count
+        } else {
+            countForCharacter = 1;
+        }
+
+        //Now put the up to date count into the map
+        map.put(character, countForCharacter);
     }
+
+
+    //Get the found characters as an array of Character
+    Character[] charactersFound = map.keySet().toArray(new Character[0]);
+
+    analizaArea.setText("Litera\tCzestotliwosc\tLiczba\n");
+    for(int k = 2; k < charactersFound.length; k++)
+    {
+        character = charactersFound[k];
+        analizaArea.appendText(character+
+                "\t" +"\t" +
+                //Following line gets the count for the character and divides by totalCount,
+                //making sure that the the result is a floating point
+                round2((map.get(character)/((float)totalCount)),3)  +
+                "\t"+"\t" +
+                //get the count for the character
+                map.get(character)+"\n");
+    }
+    
+    //analizaArea.setText(TekstDoWpisania);  
+    //analizaArea.appendText(output);
+}
+
+    
+    public void dodajTekstDoArea(String TekstDoWpisania)
+    {
+    analizaArea.setText(TekstDoWpisania);    
+    }
+    
     @FXML
     private void przyciskSzyfrujPodstawienie(ActionEvent event) {
         System.out.println("You clicked me!");

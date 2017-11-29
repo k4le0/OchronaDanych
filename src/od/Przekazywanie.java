@@ -9,25 +9,15 @@ package od;
  *
  * @author k4le0
  */
-public class Przekazywanie {
- 
-    private analizaTekst String;
-    
+public class Przekazywanie{
+ // <analizaTekst>
+    private String analizaTekst  = new String();
 
-    public Przekazanie(analizaTekst String) {
+    public void Przekazywanie(String analiza) {
         this.analizaTekst = analizaTekst;
     }
 
-    public K getKey() {
-        return key;
-    }
-
-    public V getValue() {
-        return value;
-    }
-
-    public String toString() {
-        return String.format("%s : %s", key.toString(), value.toString());
-    }
-   
+   /** public a getZanalizowanyTekst() {
+        return analizaTekst;
+    } */
 }

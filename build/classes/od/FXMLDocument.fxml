@@ -29,7 +29,12 @@
                           <tabs>
                             <Tab text="Analiza">
                               <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Label layoutX="15.0" layoutY="50.0" text="Poniżej analiza abundancji liter w tekście:" />
+                                          <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#analizaTekstu" text="Analiza tekstu" />
+                                          <TextArea fx:id="analizaArea" layoutX="15.0" layoutY="76.0" prefHeight="200.0" prefWidth="974.0" />
+                                       </children></AnchorPane>
                               </content>
                             </Tab>
                             <Tab text="Odszyfrowanie">

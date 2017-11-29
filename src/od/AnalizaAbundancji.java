@@ -13,12 +13,17 @@ import java.io.*;
  */
 public class AnalizaAbundancji {
 
-public static void main(String[] args) throws IOException {
+    
+    public void dodajTekstDoArea(String output){
+            //FXMLDocumentController.dodajTekstDoArea(output);
+    }
+    
+public  void main(String[] args) throws IOException {
     BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
     System.out.print("Enter Any Text: ");
     String output = BR.readLine();
     output=output.toLowerCase();
-
+    
     int length = output.length();
     char character;
     int totalCount = 0;
@@ -66,5 +71,6 @@ public static void main(String[] args) throws IOException {
                 //get the count for the character
                 map.get(character));
     }
+    
 }
 }
